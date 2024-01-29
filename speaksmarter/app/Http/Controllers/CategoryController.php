@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Inertia\Inertia;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -33,9 +34,10 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        Categoty::create($request -> validated());
+        return   redirect()->route('categories.index');
     }
 
     /**
