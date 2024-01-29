@@ -1,9 +1,10 @@
 <script setup>
-import FormSection from '@/Components/FormSection.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+
+import FormSection from '../FormSection.vue';
+import InputError from '../InputError.vue';
+import InputLabel from '../InputLabel.vue';
+import PrimaryButton from '../PrimaryButton.vue';
+import TextInput from '../TextInput.vue';
 defineProps({
     form: {
         typeof: Object,
@@ -23,9 +24,9 @@ defineEmits(['submit'])
 
 <template>
     <FormSection @submitted="$emit('submit')">
-        <tempale #title>
+        <template #title>
             {{updating ? 'Update Category':'Create new Category'}}
-        </tempale>
+        </template>
         <template #description>
             {{updating ? 'Update The Selected Category' : "Create a New Category from Scratch"}}
         </template>
