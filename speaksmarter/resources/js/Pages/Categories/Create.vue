@@ -8,7 +8,7 @@ const form = useForm({
 })
 </script>
 <template>
-    <AppLayout>
+    <AppLayout title="Create Category">
         <template #header>
             <h1 class="font-semibold text-xl text-gray-800 leading-tight">Create Category</h1>
         </template>
