@@ -14,9 +14,11 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+
     {
+        define('NUMBER_OF_ITEMS_PER_PAGE',25);
         // //Indicar que sedeben mostrar 25 registro por pagina
-        $categories=Category::paginate(25);
+        $categories=Category::paginate(NUMBER_OF_ITEMS_PER_PAGE);
         
         // //Renderizar vista con Inertia
         return inertia('Categories/index',['categories'=> $categories]);
@@ -69,8 +71,9 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }
