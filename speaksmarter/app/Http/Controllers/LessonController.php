@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Lesson;
+use App\Models\Category;
+use App\Models\Level;
+use Inertia\Inertia;
 
 class LessonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+    const NUMBER_OF_ITEMS_PER_PAGE=25;
     public function index()
     {
-        //
+         // //Indicar que sedeben mostrar 25 registro por pagina
+         $lessons=Lesson::paginate(self::NUMBER_OF_ITEMS_PER_PAGE);
+        
+         // //Renderizar vista con Inertia
+         return inertia('Lessons/Index',['lessons'=> $lessons]);
     }
 
     /**
@@ -20,7 +27,9 @@ class LessonController extends Controller
      */
     public function create()
     {
-        //
+        $categories= Category::all();
+        $levels = Level::all();
+        return inertia('Lessons/Create',['categories'=>$categories,'levels'=>$levels]);
     }
 
     /**
@@ -28,7 +37,8 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request -> validated());
+        return redirect()->route('categories.index');
     }
 
     /**
