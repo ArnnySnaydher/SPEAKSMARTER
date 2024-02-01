@@ -10,15 +10,13 @@ use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    const NUMBER_OF_ITEMS_PER_PAGE=25;
     public function index()
 
     {
-        define('NUMBER_OF_ITEMS_PER_PAGE',25);
+        
         // //Indicar que sedeben mostrar 25 registro por pagina
-        $categories=Category::paginate(NUMBER_OF_ITEMS_PER_PAGE);
+        $categories=Category::paginate(self::NUMBER_OF_ITEMS_PER_PAGE);
         
         // //Renderizar vista con Inertia
         return inertia('Categories/index',['categories'=> $categories]);
